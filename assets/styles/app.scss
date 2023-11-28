@@ -1,0 +1,22 @@
+
+:root {
+    --nav-color: #460C05;
+    --primary-color:#D46F4D;
+    --secondary-color:#FFBF66;
+}
+
+body {
+    background-color: blue;
+}
+
+.container-fluid {
+    background-color: var(--nav-color) ;
+    justify-content: flex-end ;
+    
+}
+
+.nav-item {
+    background-color : var(--primary-color);
+    
+    
+}

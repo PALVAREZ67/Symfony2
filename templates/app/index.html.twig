@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>
-			{% block title %}{% endblock %}
-		</title>
-	</head>
-	<body>
-		{% block body %}
-			<h1>
-				Bienvenue !
-			</h1>
-		{% endblock %}
-	</body>
-</html>
+{% extends 'base.html.twig' %}
+
+{% block title %}Wild Series
+{% endblock %}
+
+{% block body %}
+	<h1>{{ website }}
+		index</h1>
+{% endblock %}
