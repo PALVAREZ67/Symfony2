@@ -1,10 +1,18 @@
-{% extends 'base.html.twig' %}
-
 {% block title %}Wild Series
 {% endblock %}
 
 {% block body %}
-	<h1>{{ website }}
-		index
-		{{ id }}</h1>
+	<h1>Toutes les séries de la table program :
+	</h1>
+	{% for program in programs %}
+		<div>
+			<h2>{{ loop.index }}
+				/
+				{{ program.title }}</h2>
+			<p>{{ program.synopsis }}</p>
+			<a href="{{ path('program_show', { id: program.id}) }}">Voir la fiche</a>
+		</div>
+	{% else %}
+		Aucune série trouvée.
+	{% endfor %}
 {% endblock %}

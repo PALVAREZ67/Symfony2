@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<h1>Catégories :</h1>
+	<h2>{{ categoryName }}</h2>
+
+	<section>
+		{% for program in programs %}
+			<article class="cards_serie">
+				<div class="cards_title">
+					<h3>{{ program.id }}
+						/
+						{{ program.title }}</h3>
+				</div>
+				<div class="cards_body">
+					<h3>{{ program.synopsis }}</h3>
+				</div>
+				<div>
+					<a href="{{ path('program_show', { id: program.id}) }}">Voir plus de détails</a>
+				</div>
+			</article>
+		{% else %}
+			<h3>Aucune série existante pour cette categorie !</h3>
+		{% endfor %}
+
+	</section>
+
+
+{% endblock %}
