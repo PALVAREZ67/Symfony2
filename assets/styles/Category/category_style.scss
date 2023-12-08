@@ -1,0 +1,30 @@
+h1.title-page {
+    font-size: 3rem;
+    margin: 2rem;
+}
+
+
+section.category {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 90%;
+}
+
+div.card-category {
+    background-color: var(--color-primary);
+    height: 10rem;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    justify-content: center;
+    padding: 1rem;
+}
+
+
+div.card-body, .card-title {
+    justify-self: center;
+}
+
+
+
+

@@ -1,16 +1,20 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-	<h1>Toutes les catégories :</h1>
-
-	{% for category in categories %}
-		<h2>{{ loop.index }}
-			/
-			{{category.name}}</h2>
-		<a href="{{ path('category_show', {'categoryName': category.name}) }}">Voir la catégorie</a>
-	{% else %}
-		Aucune catégorie existante
-	{% endfor %}
-
-
+    <h1 class="title-page">Toutes nos catégories</h1>
+    <a href="{{ path('category_new') }}">Ajouter une nouvelle catégorie</a>
+    <section class="category">
+        {% for category in categories %}
+            <div class="card-category">
+                <div class="card-title">
+                    <h2>{{ category.name }}</h2>
+                </div>
+                <div class="card-body">
+                    <a href="{{ path('category_show', {categoryName: category.name}) }}">Voir la catégorie</a>
+                </div>
+            </div>
+        {% else %}
+            Aucune catégorie existante
+        {% endfor %}
+    </section>
 {% endblock %}

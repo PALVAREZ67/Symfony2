@@ -1,22 +1,53 @@
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap');
+
+@import url('Components/_navbar_style.scss');
+@import url('Components/_form_style.scss');
+
+@import url('Category/category_style.scss');
+
+@import url('program_style.scss');
+
 
 :root {
-    --nav-color: #460C05;
-    --primary-color:#D46F4D;
-    --secondary-color:#FFBF66;
+    --background: #1A1A1D;
+    --color-primary: #6F2232;
+    --color-secondary: #950740;
+    --color-text: #fff;
+    --bs-link-color-rgb: var(--color-text);
+    --bs-body-bg: var(--background);
+    --bs-table-color-state: var(--color-text);
+
+}
+
+* {
+    color: var(--color-text) ;
+    padding: 0;
+    margin: 0;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 body {
-    background-color: blue;
+    background-color: var(--background) ;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
-.container-fluid {
-    background-color: var(--nav-color) ;
-    justify-content: flex-end ;
-    
+.table {
+    --bs-table-color-state: var(--color-text);
 }
 
-.nav-item {
-    background-color : var(--primary-color);
-    
-    
+a {
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+input, option, textarea, select {
+    color: black;
 }
