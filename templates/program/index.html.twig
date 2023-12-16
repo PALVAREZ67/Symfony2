@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-
+	{{ app.session.get('total') }}
 	<h1 class="title-page">Toutes nos séries
 	</h1>
 	<a href="{{ path('program_new') }}">Ajouter une nouvelle série</a>
@@ -16,7 +16,7 @@
 				<div class="card-body">
 					<h2 class="card-title">{{ program.title }}</h2>
 					<p class="card-text">{{ program.synopsis|length > 50 ? program.synopsis|slice(0, 100) ~ '...' : program.synopsis }}</p>
-					<a href="{{ path('program_show', { programSlug: program.slug}) }}" class="btn btn-primary">Voir la fiche</a>
+					<a href="{{ path('program_show', { programID: program.ID}) }}" class="btn btn-primary">Voir la fiche</a>
 				</div>
 			</div>
 		{% else %}

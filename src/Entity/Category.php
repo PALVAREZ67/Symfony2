@@ -22,6 +22,7 @@ class Category
         max: 255,
         maxMessage: 'La catégorie saisie {{ value }} est trop longue, elle ne devrait pas dépasser {{ limit }} caractères',
     )]
+    #[Assert\Unique] 
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Program::class)]

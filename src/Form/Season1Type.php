@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SeasonType extends AbstractType
+class Season1Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -15,9 +15,7 @@ class SeasonType extends AbstractType
             ->add('number')
             ->add('year')
             ->add('description')
-            ->add('program', null, [
-                'class' => Season::class, 
-                'choice_label' => 'title'
+            ->add('program', null, ['choice_label' => 'title'
             ])
         ;
     }

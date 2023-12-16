@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Season;
-use App\Form\SeasonType;
+use App\Form\Season1Type;
 use App\Repository\SeasonRepository;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\MailerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,20 +25,26 @@ class SeasonController extends AbstractController
     }
 
     #[Route('/new', name: 'app_season_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
         $season = new Season();
-        $form = $this->createForm(SeasonType::class, $season);
+        $form = $this->createForm(Season1Type::class, $season);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($season);
             $entityManager->flush();
 
-            $this->addFlash('success', 'The new season has been created');
-            
+            $this->addFlash('success', 'The new Season has been created');
+            $email = (new Email())
+                ->from($this->getParameter('mailer_from'))
+                ->to('your_email2@example.com')
+                ->subject('Une nouvelle saison vient d\'être publiée !')
+                ->html($this->renderView('season/newSeasonEmail.html.twig', ['season' => $season]));
 
-            //return $this->redirectToRoute('app_season_index', [], Response::HTTP_SEE_OTHER);
+            $mailer->send($email);
+
+            return $this->redirectToRoute('app_season_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('season/new.html.twig', [
@@ -56,7 +64,7 @@ class SeasonController extends AbstractController
     #[Route('/{id}/edit', name: 'app_season_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Season $season, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(SeasonType::class, $season);
+        $form = $this->createForm(Season1Type::class, $season);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -77,10 +85,7 @@ class SeasonController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$season->getId(), $request->request->get('_token'))) {
             $entityManager->remove($season);
             $entityManager->flush();
-
-            
         }
-        $this->addFlash('warning', 'The season has been deleted');
 
         return $this->redirectToRoute('app_season_index', [], Response::HTTP_SEE_OTHER);
     }
